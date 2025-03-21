@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <style> 
+        .inventory-container {
+            background-color: #fbeee0; /* Background color */
+            border: 1px solid #ccc; /* Border */
+            border-radius: 10px; /* Border radius */
+            padding: 20px; /* Padding */
+            max-width: 800px; /* Max width */
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            width: 48%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .column h2 {
+            margin-top: 0;
+        }
+
+        .stock-quantity {
+            font-size: 14px;
+            color: #39241B;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
+        <a href="admin_orders.php"><button class="button2">Orders</button></a>
+        <a href="inventory.html"><button class="button2">Inventory</button></a>
+        <a href="report.php"><button class="button2">Report</button></a>        
+    </div>
+    <div class="inventory-container">
+        <h1>Inventory Management</h1>
+            <form action="insert.php" method="post">
+                <div class="container">
+                    <div class="column">
+                        <h2>Inventory Management</h2>
+                        <label for="itemSelect">Select Item:</label>
+                        <select id="itemSelect" name="item">
+                            <option value="Pork Belly">Pork Belly</option> 
+                            <option value="Spicy Pork Belly">Spicy Pork Belly</option>
+                            <option value="Beef Belly">Beef Belly</option>
+                            <option value="Galbi Sauce">Galbi Sauce</option>
+                            <option value="L.A. Galbi">L.A. Galbi</option>
+                            <option value="Coke">Coke</option>
+                            <option value="Sprite">Sprite</option>
+                            <option value="Royal">Royal</option>
+                            <option value="Pineapple Juice">Pineapple Juice</option>
+                            <option value="SMB">SMB</option>
+                            <option value="SML">SML</option>
+                            <option value="Soju Green Grape">Soju Green Grape</option>
+                            <option value="Soju Peach">Soju Peach</option>
+                            <option value="Soju Strawberry">Soju Strawberry</option>
+                            <option value="Water">Water</option>
+                            <option value="Kimchi">Kimchi</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Odeng">Odeng</option>
+                            <option value="Japchae">Japchae</option>
+                            <option value="Sweet Potatoes">Sweet Potatoes</option>
+                            <option value="Cheese">Cheese</option>
+                            <option value="Ssamjang">Ssamjang</option>
+                            <option value="Sesame Oil / Salt">Sesame Oil / Salt</option>
+                            <option value="Lettuce">Lettuce</option>
+                        </select>
+                        <br><br>
+                        <label for="stockInput">Enter Quantity:</label>
+                        <input type="number" id="stockInput" placeholder="Enter quantity" name="stock">
+                        <br><br>
+                        <button type="submit">Add Stock</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="inventory-container">
+        <h1>Inventory Management</h1>
+        <div id="stock-display"></div> <!-- Placeholder for displaying current stocks -->
+    </div>
+
+    
+
+    <script src="scripts.js"></script>
+
+    <script>
+        // Transfer the following code into scripts.js
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch("fetch_stock.php")
+        .then(response => response.json())
+        .then(data => {
+            const stockDisplay = document.getElementById("stock-display");
+            stockDisplay.innerHTML = "<h2>Current Stocks</h2>";
+            stockDisplay.innerHTML += "<ul>";
+            data.forEach(item => {
+                stockDisplay.innerHTML += `<li>${item.item}: ${item.stock}</li>`;
+            });
+            stockDisplay.innerHTML += "</ul>";
+        })
+        .catch(error => {
+            console.error("Error fetching stock data:", error);
+        });
+});
+    </script>
+
+</body>
+</html>
