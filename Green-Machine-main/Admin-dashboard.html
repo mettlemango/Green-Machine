@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN | Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="headerContainer">
+            <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
+        </div>
+        <form action="search.php" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search items..." required>
+            <button type="submit"><img src="assets/images/search.png" class="searchPic" alt="Search"></button>
+        </form>
+        <img src="assets/images/cart.png" class="cartPic" alt="Cart">
+        <nav>
+            <a href="#">Sign up</a>
+            <a>|</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="admin-dashboard">
+            <h1>Admin Dashboard</h1>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <a href="report.php" class="dashboard-link">
+                        <img src="assets/images/report.png" alt="Reports" class="dashboard-icon">
+                        <span class="dashboard-label">Reports</span>
+                    </a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <a href="inventory.html" class="dashboard-link">
+                        <img src="assets/images/inventory.png" alt="Inventory" class="dashboard-icon">
+                        <span class="dashboard-label">Inventory</span>
+                    </a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <a href="admin_orders.php" class="dashboard-link">
+                        <img src="assets/images/orders.png" alt="Orders" class="dashboard-icon">
+                        <span class="dashboard-label">Orders</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

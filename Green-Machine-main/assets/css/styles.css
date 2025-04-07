@@ -90,3 +90,119 @@ body {
     background-color: #555;
     border-radius: auto;
 }
+
+/* Add these new styles to your existing styles.css */
+.main-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    min-height: calc(100vh - 75px); /* Adjust for header height */
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-dashboard {
+    width: 100%;
+    max-width: 1000px; /* Adjust max width as needed */
+    text-align: center;
+}
+
+.admin-dashboard h1 {
+    color: #024033;
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+}
+
+.admin-dashboard h2 {
+    margin: 0 0 40px 0;
+    font-size: 1.5em;
+    color: #666;
+}
+
+.dashboard-grid {
+    display: flex;
+    justify-content: center; /* Centers cards horizontally */
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 0 auto; /* Ensures grid itself is centered */
+    padding: 0 20px; /* Prevents edge touching on small screens */
+}
+
+.dashboard-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.dashboard-icon {
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.dashboard-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #024033;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .dashboard-card {
+        width: 80%;
+        max-width: 250px;
+    }
+    
+    .main-container {
+        padding-top: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fixed-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .headerContainer {
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .search-form {
+        order: 3;
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .search-form input {
+        width: 100%;
+    }
+    
+    .fixed-header nav {
+        margin: 10px auto;
+    }
+}
