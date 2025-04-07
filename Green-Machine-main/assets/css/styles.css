@@ -1,5 +1,4 @@
 body {
-    border:10px solid black;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -86,9 +85,4 @@ body {
 .fixed-header nav a:hover {
     background-color: #555;
     border-radius: auto;
-}
-
-.content {
-    margin-top: 80px; /* Must match header height to prevent content hiding */
-    padding: 20px;
 }
