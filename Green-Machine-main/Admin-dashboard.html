@@ -1,3 +1,13 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const role = localStorage.getItem("role"); // Or use PHP sessions
+    if (role !== "admin") {
+        alert("Access denied! Redirecting...");
+        window.location.href = "userDashboard.html";
+    }
+});</script>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

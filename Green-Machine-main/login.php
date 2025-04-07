@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
+header('Content-Type: application/json');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+$conn = new mysqli("localhost", "root", "", "greenmachine");
 
-</head>
-<body class="bodyLogin">
-qweqw
+// Get POST data
+$username = $conn->real_escape_string($_POST['username']);
+$password = $conn->real_escape_string($_POST['password']);
 
-    
-</body>
-</html>
+// Query (use password_hash() in production!)
+$result = $conn->query("SELECT * FROM login_test WHERE username = '$username' AND password = '$password'");
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['role'] = $user['role']; // 'admin' or 'user'
+
+    echo json_encode([
+        'success' => true,
+        'redirect' => ($user['role'] === 'admin') ? 'Admin-dashboard.html' : 'userDashboard.html'
+    ]);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+}
+?>
+
+
