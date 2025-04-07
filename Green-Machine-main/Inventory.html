@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN | Inventory Management</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .main-content {
+            padding-top: 100px; /* Space for fixed header */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .inventory-container {
+            background-color: #fbeee0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            width: 48%;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .column h2 {
+            margin-top: 0;
+            color: #024033;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #024033;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #stock-display ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #stock-display li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="headerContainer">
+            <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
+        </div>
+    </header>
+
+    <div class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
+        <a href="admin_orders.php"><button class="button2">Orders</button></a>
+        <a href="inventory.html"><button class="button2">Inventory</button></a>
+        <a href="report.php"><button class="button2">Report</button></a>        
+    </div>
+
+    <div class="main-content">
+        <h2 class="header-title">Inventory Management</h2>
+        <div class="inventory-container">
+            <form action="insert.php" method="post">
+                <div class="container">
+                    <div class="column">
+                        <h2>Update Inventory</h2>
+                        <label for="itemSelect">Select Item:</label>
+                        <select id="itemSelect" name="item">
+                            <option value="Pork Belly">Pork Belly</option>
+                            <option value="Spicy Pork Belly">Spicy Pork Belly</option>
+                            <option value="Beef Belly">Beef Belly</option>
+                            <option value="Galbi Sauce">Galbi Sauce</option>
+                            <option value="L.A. Galbi">L.A. Galbi</option>
+                            <option value="Coke">Coke</option>
+                            <option value="Sprite">Sprite</option>
+                            <option value="Royal">Royal</option>
+                            <option value="Pineapple Juice">Pineapple Juice</option>
+                            <option value="SMB">SMB</option>
+                            <option value="SML">SML</option>
+                            <option value="Soju Green Grape">Soju Green Grape</option>
+                            <option value="Soju Peach">Soju Peach</option>
+                            <option value="Soju Strawberry">Soju Strawberry</option>
+                            <option value="Water">Water</option>
+                            <option value="Kimchi">Kimchi</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Odeng">Odeng</option>
+                            <option value="Japchae">Japchae</option>
+                            <option value="Sweet Potatoes">Sweet Potatoes</option>
+                            <option value="Cheese">Cheese</option>
+                            <option value="Ssamjang">Ssamjang</option>
+                            <option value="Sesame Oil / Salt">Sesame Oil / Salt</option>
+                            <option value="Lettuce">Lettuce</option>
+                        </select>
+                        
+                        <label for="stockInput">Enter Quantity:</label>
+                        <input type="number" id="stockInput" placeholder="Enter quantity" name="stock">
+                        
+                        <button type="submit">Add Stock</button>
+                    </div>
+                    
+                    <div class="column">
+                        <h2>Current Stocks</h2>
+                        <div id="stock-display"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("fetch_stock.php")
+                .then(response => response.json())
+                .then(data => {
+                    const stockDisplay = document.getElementById("stock-display");
+                    let html = "<ul>";
+                    data.forEach(item => {
+                        html += `<li><strong>${item.item}:</strong> ${item.stock} units</li>`;
+                    });
+                    html += "</ul>";
+                    stockDisplay.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error("Error fetching stock data:", error);
+                    stockDisplay.innerHTML = "<p>Error loading stock data. Please try again.</p>";
+                });
+        });
+    </script>
+</body>
+</html>
