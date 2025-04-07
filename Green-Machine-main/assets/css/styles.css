@@ -6,6 +6,10 @@ body {
     display: flex;
 }
 
+.bodyLogin {
+    background-color: #024033;
+}
+
 .fixed-header {
     position: fixed;
     top: 0;         
