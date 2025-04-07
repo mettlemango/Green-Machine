@@ -1,15 +1,131 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #faf6f6;
-    display: flex;
-}
-
 .bodyLogin {
     background-color: #024033;
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #faf6f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px; /* Space between logo and login */
+    padding: 20px;
+    flex-wrap: wrap; /* Allows stacking on small screens */
+    margin-bottom: 50px;
+}
 
+.logo-container {
+    display: flex;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.logo-container img {
+    height: 500px;
+    max-height: 400px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.login-container {
+    width: 300px;
+    min-height: 320px;
+    padding: 30px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+  
+  .login-container form {
+    margin-top: 40px;
+    width: 100%; /* Use full container width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Consistent form element spacing */
+  }
+  
+  .login-container .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between label and input */
+  }
+  
+  .login-container label {
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Includes padding in width */
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #006937;
+    color: #fafafa;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Space above button */
+  }
+  
+  .login-container button:hover {
+    background-color: #00512a; /* Darker green on hover */
+  }
+
+  .divider-line {
+    border-top: 1px solid #ddd;  /* Light gray line */
+    width: 100%;                /* Full width of container */
+}
+
+.fontStyle1 {
+    font-family: 'Courier New', monospace; /* Monospace for blocky feel */
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #00ff00; /* Classic green */
+  text-shadow: 
+    2px 2px 0 #000, /* Black outline */
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+
+.login-container .signup-button {
+    width: 200px;
+    padding: 12px;
+    background-color: #7ed957;
+    color: #fafafa;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Space above button */
+}
 .fixed-header {
     position: fixed;
     top: 0;         

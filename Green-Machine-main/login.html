@@ -5,28 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-    <div class="div1">
-        <h1 class="hIntro"><strong>BOBSANG MIGO!</strong></h1>
-        <h2 class="h2Intro"><strong>밥상미고에 오신 것을 환영합니다!</strong></h2>
-    </div>
-    <div class="login-container">
-        <h1 class="loginIntro"><strong>Admin Login</strong></h1>
-        <form id="login-form" action="login.php" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+<body class="bodyLogin">
+    <div class="main-content">
+        <div class="logo-container">
+            <img src="assets/images/logo1.png" alt="Company Logo">
+          </div>
+        <div class="login-container">
+            <form id="login-form" action="login.php" method="POST">
+                <div class="form-group">
+                    <input type="text" id="username" name="username"  placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password"required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <div class="divider-line"></div>
+            <div>
+                <button class="signup-button" onclick="window.location.href='signup.php'">Sign Up</button>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <p id="error-message" class="error-message"></p>
+            <p id="error-message" class="error-message"></p>
+
+        </div>
+
     </div>
+    
 
     <script src="assets/js/script.js"></script>
 </body>
