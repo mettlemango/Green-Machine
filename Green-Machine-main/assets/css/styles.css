@@ -383,3 +383,59 @@ body {
             color: #39241B;
         }
 }
+
+.requirement {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+.requirement.valid {
+    color: green;
+}
+.requirement.invalid {
+    color: red;
+}
+#password-strength {
+    margin-top: 0.5rem;
+    height: 5px;
+    background: #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+}
+#password-strength-bar {
+    height: 100%;
+    width: 0%;
+    background: red;
+    transition: width 0.3s, background 0.3s;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.error-message {
+    color: red;
+    min-height: 20px;
+    margin-top: 10px;
+}

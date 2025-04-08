@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bodyLogin">
+    <div class="main-content">
+        <div class="logo-container">
+            <img src="assets/images/logo1.png" alt="Company Logo">
+        </div>
+        <div class="login-container">
+            <form id="signup-form">
+                <div class="form-group">
+                    <div class="tooltip">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <span class="tooltiptext">4-20 characters, letters/numbers/_ only</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="tooltip">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span class="tooltiptext">Min 8 chars, 1 uppercase, 1 number, 1 special char</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="login-button">Sign Up</button>
+            </form>
+            <div class="divider-line"></div>
+            <div>
+                <button class="signup-button" onclick="window.location.href='login.html'">Back to Login</button>
+            </div>
+            <p id="error-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
