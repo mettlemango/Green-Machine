@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +20,13 @@
         </form>
         <img src="assets/images/cart.png" class="cartPic">
         <nav>
-            <a href="#">Sign up</a>
-            <a>|</a>
-            <a href="#">Login</a>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                <a href="logout.php">Logout</a>
+            <?php else: ?>
+                <a href="#">Sign up</a>
+                <a>|</a>
+                <a href="login.html">Login</a>
+            <?php endif; ?>
         </nav>
     </header>
     <script src="script.js"></script>
