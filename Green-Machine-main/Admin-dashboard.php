@@ -20,6 +20,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
             <div class="headerContainer">
                 <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
             </div>
+            <nav>
+            <a href="logout.php">Logout</a>
+            </nav>
         </header>
     
         <div class="main-container">
