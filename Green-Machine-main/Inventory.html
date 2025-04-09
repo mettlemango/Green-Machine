@@ -31,6 +31,7 @@
             padding: 15px;
             border-radius: 5px;
             background-color: white;
+            margin:5px;
         }
 
         .column h2 {
@@ -38,12 +39,13 @@
             color: #024033;
         }
 
-        select, input[type="number"] {
+        select, input[type="number"], input[type="text"], input[type="file"] {
             width: 100%;
             padding: 8px;
             margin: 5px 0 15px 0;
             border: 1px solid #ddd;
             border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
         }
 
         button[type="submit"] {
@@ -63,6 +65,18 @@
         #stock-display li {
             padding: 8px;
             border-bottom: 1px solid #eee;
+        }
+
+        /* Added for consistent form controls */
+        .form-control {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -84,60 +98,71 @@
                 <div class="container">
                     <div class="column">
                         <h2>Update Inventory</h2>
-                        <label for="itemSelect">Select Item:</label>
-                        <select id="itemSelect" name="item">
-                            <option value="Mini Breadboard White">Mini Breadboard White</option>
-                            <option value="Basic Electronics Discovery Kit">Basic Electronics Discovery Kit</option>
-                            <option value="Arduino Trainer Mastery Kit">Arduino Trainer Mastery Kit</option>
-                            <option value="Breadboard Wires 65">Breadboard Wires 65</option>
-                            <option value="5pcs 1N4148 5 pcs per pack">5pcs 1N4148 5 pcs per pack</option>
-                            <option value="PBL304 600V 4A Bridge Rectifiers bp7">PBL304 600V 4A Bridge Rectifiers bp7</option>
-                            <option value="STPS30S45CT 5V 2x15A Dual Schottky CK TO220">STPS30S45CT 5V 2x15A Dual Schottky CK TO220</option>
-                            <option value="1N5399 1.5A 1000V Rectifier Diode">1N5399 1.5A 1000V Rectifier Diode</option>
-                            <option value="1N4007G Rectifier Taiwan Semiconductor Corp">1N4007G Rectifier Taiwan Semiconductor Corp</option>
-                            <option value="Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier">Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier</option>
-                            <option value="S1G 400V 1A Rectifier Diode SMA">S1G 400V 1A Rectifier Diode SMA</option>
-                            <option value="W10M 1.5A 1000V Bridgle Rectifier UL Certified">W10M 1.5A 1000V Bridgle Rectifier UL Certified</option>
-                            <option value="LiteON GBU808 8A 800V Bridge Rectifier">LiteON GBU808 8A 800V Bridge Rectifier</option>
-                            <option value="MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified">MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified</option>
-                            <option value="S9018">S9018</option>
-                            <option value="RLZTE-11 5.1B 5.1V 500mW Zener SOD80C">RLZTE-11 5.1B 5.1V 500mW Zener SOD80C</option>
-                            <option value="Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)">Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)</option>
-                            <option value="DS1820 1-wire Digital Thermometer TO-92">DS1820 1-wire Digital Thermometer TO-92</option>
-                            <option value="Z84C0006PEC">Z84C0006PEC</option>
-                            <option value="SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting">SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting</option>
-                            <option value="4P3T ROT">4P3T ROT</option>
-                            <option value="Transformer 0V-5V-7V 750mAh 220VAC">Transformer 0V-5V-7V 750mAh 220VAC</option>
-                            <option value="Transformer 12V">Transformer 12V</option>
-                            <option value="220V 9V-0V-9V 750mAh Transformer">220V 9V-0V-9V 750mAh Transformer</option>
-                            <option value="3.3mH Radial Inductor 3300uH">3.3mH Radial Inductor 3300uH</option>
-                            <option value="Inductor TH 1uH">Inductor TH 1uH</option>
-                        </select>
+                        <div class="form-control">
+                            <label for="itemSelect">Select Item:</label>
+                            <select id="itemSelect" name="item">
+                                <option value="Mini Breadboard White">Mini Breadboard White</option>
+                                <option value="Basic Electronics Discovery Kit">Basic Electronics Discovery Kit</option>
+                                <option value="Arduino Trainer Mastery Kit">Arduino Trainer Mastery Kit</option>
+                                <option value="Breadboard Wires 65">Breadboard Wires 65</option>
+                                <option value="5pcs 1N4148 5 pcs per pack">5pcs 1N4148 5 pcs per pack</option>
+                                <option value="PBL304 600V 4A Bridge Rectifiers bp7">PBL304 600V 4A Bridge Rectifiers bp7</option>
+                                <option value="STPS30S45CT 5V 2x15A Dual Schottky CK TO220">STPS30S45CT 5V 2x15A Dual Schottky CK TO220</option>
+                                <option value="1N5399 1.5A 1000V Rectifier Diode">1N5399 1.5A 1000V Rectifier Diode</option>
+                                <option value="1N4007G Rectifier Taiwan Semiconductor Corp">1N4007G Rectifier Taiwan Semiconductor Corp</option>
+                                <option value="Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier">Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier</option>
+                                <option value="S1G 400V 1A Rectifier Diode SMA">S1G 400V 1A Rectifier Diode SMA</option>
+                                <option value="W10M 1.5A 1000V Bridgle Rectifier UL Certified">W10M 1.5A 1000V Bridgle Rectifier UL Certified</option>
+                                <option value="LiteON GBU808 8A 800V Bridge Rectifier">LiteON GBU808 8A 800V Bridge Rectifier</option>
+                                <option value="MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified">MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified</option>
+                                <option value="S9018">S9018</option>
+                                <option value="RLZTE-11 5.1B 5.1V 500mW Zener SOD80C">RLZTE-11 5.1B 5.1V 500mW Zener SOD80C</option>
+                                <option value="Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)">Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)</option>
+                                <option value="DS1820 1-wire Digital Thermometer TO-92">DS1820 1-wire Digital Thermometer TO-92</option>
+                                <option value="Z84C0006PEC">Z84C0006PEC</option>
+                                <option value="SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting">SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting</option>
+                                <option value="4P3T ROT">4P3T ROT</option>
+                                <option value="Transformer 0V-5V-7V 750mAh 220VAC">Transformer 0V-5V-7V 750mAh 220VAC</option>
+                                <option value="Transformer 12V">Transformer 12V</option>
+                                <option value="220V 9V-0V-9V 750mAh Transformer">220V 9V-0V-9V 750mAh Transformer</option>
+                                <option value="3.3mH Radial Inductor 3300uH">3.3mH Radial Inductor 3300uH</option>
+                                <option value="Inductor TH 1uH">Inductor TH 1uH</option>
+                            </select>
+                        </div>
 
                         <button type="button" id="toggleNewProduct" style="margin: 10px 0;">+ Add New Product</button>
     
-                <!-- New product fields (hidden initially) -->
-                <div id="newProductSection" style="display: none; margin-top: 15px; margin-left: 10px;">
-                    <label for="productImage">Product Image:</label>
-                    <input type="file" id="productImage" name="product_image" accept="image/*">
+                        <!-- New product fields (hidden initially) -->
+                        <div id="newProductSection" style="display: none; margin-top: 15px;">
+                            <div class="form-control">
+                                <label for="productImage">Product Image:</label>
+                                <input type="file" id="productImage" name="product_image" accept="image/*">
+                            </div>
 
-                    <label for="newProductName">New Product Name:</label>
-                    <input type="text" id="newProductName" name="new_product_name" placeholder="New Product Name">
+                            <div class="form-control">
+                                <label for="newProductName">New Product Name:</label>
+                                <input type="text" id="newProductName" name="new_product_name" placeholder="New Product Name">
+                            </div>
 
-                    <label for="productPrice">Price (₱):</label>
-                    <input type="number" id="productPrice" name="product_price" placeholder="Enter price" step="0.01" required>
-
+                            <div class="form-control">
+                                <label for="productPrice">Price (₱):</label>
+                                <input type="number" id="productPrice" name="product_price" placeholder="Enter price" step="0.01" required>
+                            </div>
     
-                    <label for="newProductCategory">Description (optional):</label>
-                    <input type="text" id="newProductCategory" name="new_product_category" placeholder="Category / Description">
-                </div>
+                            <div class="form-control">
+                                <label for="newProductCategory">Description (optional):</label>
+                                <input type="text" id="newProductCategory" name="new_product_category" placeholder="Category / Description">
+                            </div>
+                        </div>
     
-                <!-- Common quantity input -->
-                <label for="stockInput">Enter Quantity:</label>
-                <input type="number" id="stockInput" name="stock" placeholder="Enter quantity" required>
+                        <!-- Quantity input -->
+                        <div class="form-control">
+                            <label for="stockInput">Enter Quantity:</label>
+                            <input type="number" id="stockInput" name="quantity" placeholder="Enter quantity" required>
+                        </div>
     
-                <button type="submit">Submit</button>
-            </div>  
+                        <button type="submit">Submit</button>
+                    </div>  
                     <div class="column">
                         <h2>Current Stocks</h2>
                         <div id="stock-display"></div>
@@ -166,19 +191,19 @@
                     stockDisplay.innerHTML = "<p>Error loading stock data. Please try again.</p>";
                 });
         });
+        
         document.getElementById("toggleNewProduct").addEventListener("click", function () {
-    const section = document.getElementById("newProductSection");
-    const select = document.getElementById("itemSelect");
+            const section = document.getElementById("newProductSection");
+            const select = document.getElementById("itemSelect");
 
-    if (section.style.display === "none") {
-        section.style.display = "block";
-        select.disabled = true;
-    } else {
-        section.style.display = "none";
-        select.disabled = false;
-    }
-});
-
+            if (section.style.display === "none") {
+                section.style.display = "block";
+                select.disabled = true;
+            } else {
+                section.style.display = "none";
+                select.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
