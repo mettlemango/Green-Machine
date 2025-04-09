@@ -16,7 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 200px; /* Space between logo and login */
+    gap: 25px; /* Space between logo and login */
     padding: 20px;
     flex-wrap: wrap; /* Allows stacking on small screens */
     margin-bottom: 50px;
@@ -323,10 +323,9 @@ body {
     }
 
     .inventory-container {
-            background-color: #fbeee0; /* Background color */
+            background-color: white;
             border: 1px solid #ccc; /* Border */
             border-radius: 10px; /* Border radius */
-            padding: 20px; /* Padding */
             max-width: 800px; /* Max width */
             margin: 0 auto; /* Center horizontally */
         }
@@ -354,7 +353,7 @@ body {
         /*NEW code for inventory.html */
         
         .inventory-container {
-            background-color: #fbeee0; /* Background color */
+            background-color: white;
             border: 1px solid #ccc; /* Border */
             border-radius: 10px; /* Border radius */
             padding: 20px; /* Padding */

@@ -21,7 +21,7 @@
         }
         
         .report-container {
-            background-color: #fbeee0;
+            background-color: #024033;
             border-radius: 10px;
             padding: 30px;
             margin: 20px;
@@ -29,14 +29,14 @@
         }
         
         .report-title {
-            color: #024033;
+            color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
             text-align: center;
         }
         
         .month-title {
-            color: #39241B;
+            color: white;
             font-size: 1.8em;
             text-align: center;
             margin-bottom: 30px;

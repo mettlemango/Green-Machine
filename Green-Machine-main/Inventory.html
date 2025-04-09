@@ -13,7 +13,7 @@
         }
         
         .inventory-container {
-            background-color: #fbeee0;
+            background-color: #024033;
             border: 1px solid #ccc;
             border-radius: 10px;
             padding: 20px;
@@ -72,9 +72,8 @@
             <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
         </div>
         <nav class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
-            <a href="admin_orders.php"><button class="button2">Orders</button></a>
-            <a href="Admin-dashboard.php"><button class="button2">dashboard</button></a>
-            <a href="report.php"><button class="button2">Report</button></a>        
+            <a href="report.php">Report</a>   
+            <a href="Admin-dashboard.php">Dashboard</a>
         </nav>
     </header>
 
@@ -118,7 +117,7 @@
                         <button type="button" id="toggleNewProduct" style="margin: 10px 0;">+ Add New Product</button>
     
                 <!-- New product fields (hidden initially) -->
-                <div id="newProductSection" style="display: none; margin-top: 15px;">
+                <div id="newProductSection" style="display: none; margin-top: 15px; margin-left: 10px;">
                     <label for="productImage">Product Image:</label>
                     <input type="file" id="productImage" name="product_image" accept="image/*">
 
