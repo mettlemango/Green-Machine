@@ -460,3 +460,34 @@ body {
             margin-top: 50px;
             text-align: center;
         }
+
+        /* Back Button Styling */
+.back-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Similar to the 'Sign up' button */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #45a049; /* Slightly darker shade when hovered */
+}
+
+/* Styling for the Sign Up button (assuming it's similar to others) */
+a {
+    font-size: 16px;
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
