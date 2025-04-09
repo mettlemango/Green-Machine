@@ -43,7 +43,7 @@ session_start();
     }
     ?>
 
-
+    <input type="hidden" id="login-status" value="<?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? 'true' : 'false'; ?>">
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
             <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
