@@ -81,7 +81,7 @@
     <div class="main-content">
         <h2 class="header-title">Inventory Management</h2>
         <div class="inventory-container">
-            <form action="insert.php" method="post">
+            <form action="insert.php" method="post" enctype="multipart/form-data">
                 <div class="container">
                     <div class="column">
                         <h2>Update Inventory</h2>
@@ -119,8 +119,15 @@
     
                 <!-- New product fields (hidden initially) -->
                 <div id="newProductSection" style="display: none; margin-top: 15px;">
+                    <label for="productImage">Product Image:</label>
+                    <input type="file" id="productImage" name="product_image" accept="image/*">
+
                     <label for="newProductName">New Product Name:</label>
                     <input type="text" id="newProductName" name="new_product_name" placeholder="New Product Name">
+
+                    <label for="productPrice">Price (₱):</label>
+                    <input type="number" id="productPrice" name="product_price" placeholder="Enter price" step="0.01" required>
+
     
                     <label for="newProductCategory">Description (optional):</label>
                     <input type="text" id="newProductCategory" name="new_product_category" placeholder="Category / Description">

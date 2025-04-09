@@ -16,9 +16,26 @@ if ($conn->connect_error) {
         $item = $_POST['new_product_name'];
         $stock = $_POST['stock'];
         $description = isset($_POST['new_product_category']) ? $_POST['new_product_category'] : '';
+        $price = isset($_POST['product_price']) ? $_POST['product_price'] : 0.00;
+        
+        $imagePath = ''; 
+        if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true); // Create folder if not exists
+                }
 
-        $stmt = $conn->prepare("INSERT INTO stock_test (item, stock, description) VALUES (?, ?, ?)");
-        $stmt->bind_param("sis", $item, $stock, $description);
+    $filename = basename($_FILES['product_image']['name']);
+    $targetFile = $uploadDir . time() . "_" . $filename;
+
+    if (move_uploaded_file($_FILES['product_image']['tmp_name'], $targetFile)) {
+        $imagePath = $targetFile;
+    }
+}
+
+$stmt = $conn->prepare("INSERT INTO stock_test (item, stock, description, price, image) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sissd", $item, $stock, $description, $price, $imagePath);
+
 
         if ($stmt->execute()) {
             header("Location: inventory.html");
