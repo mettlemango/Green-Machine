@@ -116,7 +116,7 @@
             if (count($orders) > 0) {
                 echo "<ul class='orders-list'>";
                 foreach ($orders as $order) {
-                    echo "<li>{$order['item_name']} - Quantity: {$order['quantity']} - Price: ₽{$order['price']}</li>";
+                    echo "<li>{$order['item_name']} - Quantity: {$order['quantity']} - Price: ₽{$order['total_price']}</li>";
                 }
                 echo "</ul>";
             } else {
