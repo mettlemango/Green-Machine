@@ -12,10 +12,34 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// If it's a new product being added
-if (!empty($_POST['new_product_name']) && isset($_POST['stock'])) {
+if (isset($_POST['update_stock'])) {
+    // Handle stock update
+    $stock = (int)$_POST['stock'];
+    $item = $conn->real_escape_string($_POST['item']);
+
+    $stmt = $conn->prepare("UPDATE stock_test SET stock = stock + ? WHERE item = ?");
+    if ($stmt === false) {
+        die("Prepare failed: " . $conn->error);
+    }
+
+    $bound = $stmt->bind_param("is", $stock, $item);
+    if ($bound === false) {
+        die("Bind failed: " . $stmt->error);
+    }
+
+    $executed = $stmt->execute();
+    if ($executed) {
+        header("Location: inventory.html?success=1");
+        exit();
+    } else {
+        die("Execute failed: " . $stmt->error);
+    }
+    $stmt->close();
+    
+} elseif (isset($_POST['add_product'])) {
+    // Handle new product
     $item = $_POST['new_product_name'];
-    $stock = $_POST['stock'];
+    $stock = $_POST['initial_stock'];  // Changed from $_POST['stock'] to $_POST['initial_stock']
     $description = isset($_POST['new_product_category']) ? $_POST['new_product_category'] : '';
     $price = isset($_POST['product_price']) ? $_POST['product_price'] : 0.00;
     
@@ -80,24 +104,8 @@ if (!empty($_POST['new_product_name']) && isset($_POST['stock'])) {
         echo "Error inserting new product: " . $stmt->error;
     }
     $stmt->close();
-}
-// Otherwise, it's updating an existing item's stock
-else if (isset($_POST['stock']) && isset($_POST['item'])) {
-    $stock = $_POST['stock'];
-    $item = $_POST['item'];
-
-    $stmt = $conn->prepare("UPDATE stock_test SET stock = stock + ? WHERE item = ?");
-    $stmt->bind_param("is", $stock, $item);
-
-    if ($stmt->execute()) {
-        header("Location: inventory.html");
-        exit();
-    } else {
-        echo "Error updating stock: " . $stmt->error;
-    }
-    $stmt->close();
 } else {
-    echo "Error: Required POST data not set.";
+    die("Error: Invalid form submission. Received: " . print_r($_POST, true));
 }
 
 $conn->close();
