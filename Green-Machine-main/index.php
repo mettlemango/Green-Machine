@@ -38,26 +38,20 @@ session_start();
     </header>
 
     <?php
-    // Create a connection to the database
     $conn = new mysqli("localhost", "root", "", "greenmachine");
-
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Set up the query based on whether a search query is provided
     $sql = "SELECT DISTINCT item, price, image_path FROM stock_test WHERE price > 0";
 
-    // If a search query is provided, append a condition to filter by the query
+    // Add search filter if query exists
     if (isset($_GET['query']) && !empty($_GET['query'])) {
         $search_query = $_GET['query'];
         $sql .= " AND item LIKE '%$search_query%'";
     }
 
-    // Order the items by name
     $sql .= " ORDER BY item";
-
-    // Execute the query
     $items = $conn->query($sql);
 
     if (!$items) {
@@ -65,12 +59,13 @@ session_start();
     }
     ?>
 
+    <input type="hidden" id="login-status" value="<?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? 'true' : 'false'; ?>">
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
             <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
                 <img src="<?= !empty($row['image_path']) ? htmlspecialchars($row['image_path']) : 'assets/images/default-product.png' ?>" 
-                     alt="<?= htmlspecialchars($row['item']) ?>"
-                     onerror="this.onerror=null;this.src='assets/images/default-product.png'">
+                alt="<?= htmlspecialchars($row['item']) ?>"
+                onerror="this.onerror=null;this.src='assets/images/default-product.png'">
                 <strong><?= $row['item'] ?></strong><br>
                 ₱<?= number_format($row['price'], 2) ?>
             </div>
@@ -94,7 +89,6 @@ session_start();
             </div>
         </div>
     </div>
-
     <script src="assets/js/script.js"></script>
     <div class="container">
     </div>
