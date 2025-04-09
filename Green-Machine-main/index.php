@@ -50,6 +50,7 @@ session_start();
                 <img src="<?= !empty($row['image_path']) ? htmlspecialchars($row['image_path']) : 'assets/images/default-product.png' ?>" 
                 alt="<?= htmlspecialchars($row['item']) ?>"
                 onerror="this.onerror=null;this.src='assets/images/default-product.png'">
+                <strong><?= $row['item'] ?></strong><br>
                 ₱<?= number_format($row['price'], 2) ?>
             </div>
         <?php endwhile; ?>
