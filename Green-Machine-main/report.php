@@ -75,9 +75,8 @@
             <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
         </div>
         <nav class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
-            <a href="inventory.html"><button class="button2">Inventory</button></a> 
-            <a href="Admin-dashboard.php"><button class="button2">dashboard</button></a>  
-            <a href="admin_orders.php"><button class="button2">Orders</button></a>     
+            <a href="inventory.html">Inventory</a> 
+            <a href="Admin-dashboard.php">Dashboard</a>       
         </nav>
     </header>
 
