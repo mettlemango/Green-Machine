@@ -141,16 +141,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Item popup functionality
     let selectedItem = {};
 
+    // Replace the existing item click event listener with this:
     document.querySelectorAll('.item').forEach(item => {
         item.addEventListener('click', function() {
+            const isLoggedIn = document.getElementById('login-status').value === 'true';
+            
+            if (!isLoggedIn) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+
             selectedItem.name = this.dataset.name;
             selectedItem.price = parseFloat(this.dataset.price);
             selectedItem.qty = 1;
-    
+
             // Always use the image from the clicked element
             const clickedImg = this.querySelector('img');
             document.getElementById('popup-img').src = clickedImg.src;
-    
+
             // Update popup content
             document.getElementById('popup-name').textContent = selectedItem.name;
             document.getElementById('popup-price').textContent = selectedItem.price.toFixed(2);

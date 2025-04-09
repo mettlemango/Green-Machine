@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +12,19 @@ session_start();
 </head>
 <body>
     <header class="fixed-header">
-        <div class ="headerContainer">
+        <div class="headerContainer">
             <img src="assets/images/logo.png" class="headerPic">
         </div>
-        <form action="search.php" method="get" class="search-form">
-            <input type="text" name="query" placeholder="Search items..." required>
+        <form action="index.php" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search items..." value="<?php echo isset($_GET['query']) ? htmlspecialchars($_GET['query']) : ''; ?>" required>
             <button type="submit"><img src="assets/images/search.png" class="searchPic"></button>
         </form>
+
+        <!-- Back Button (appears if a search query is active) -->
+        <?php if (isset($_GET['query']) && !empty($_GET['query'])): ?>
+            <a href="index.php" class="back-button">Back to All Items</a>
+        <?php endif; ?>
+
         <a href="cart.php"><img src="assets/images/cart.png" class="cartPic"></a>
         <nav>
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
@@ -36,14 +43,23 @@ session_start();
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DISTINCT item, price, image_path FROM stock_test WHERE price > 0 ORDER BY item";    $items = $conn->query($sql);
+    $sql = "SELECT DISTINCT item, price, image_path FROM stock_test WHERE price > 0";
+
+    // Add search filter if query exists
+    if (isset($_GET['query']) && !empty($_GET['query'])) {
+        $search_query = $_GET['query'];
+        $sql .= " AND item LIKE '%$search_query%'";
+    }
+
+    $sql .= " ORDER BY item";
+    $items = $conn->query($sql);
 
     if (!$items) {
         die("Query error: " . $conn->error);
     }
     ?>
 
-
+    <input type="hidden" id="login-status" value="<?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? 'true' : 'false'; ?>">
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
             <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">

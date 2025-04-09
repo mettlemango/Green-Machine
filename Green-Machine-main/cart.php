@@ -64,6 +64,13 @@
         .remove-link:hover {
             text-decoration: underline;
         }
+
+        .warning-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -79,24 +86,52 @@
 
     <div class="cart-container">
         <h1 class="cart-title">Your Cart</h1>
-        <form action="checkout.php" method="POST">
+        <div id="warning-message" class="warning-message">Please select at least one item to checkout</div>
+        <form id="checkout-form" action="checkout.php" method="POST">
             <table class="cart-table">
                 <tr><th>Select</th><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th>Action</th></tr>
-                <?php foreach ($_SESSION['cart'] ?? [] as $i => $item): ?>
+                <?php 
+                if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): 
+                    foreach ($_SESSION['cart'] as $i => $item): ?>
+                        <tr>
+                            <td><input type="checkbox" name="checkout_items[]" value="<?= $i ?>"></td>
+                            <td><?= htmlspecialchars($item['name']) ?></td>
+                            <td>₱<?= number_format($item['price'], 2) ?></td>
+                            <td><?= $item['qty'] ?></td>
+                            <td>₱<?= number_format($item['price'] * $item['qty'], 2) ?></td>
+                            <td><a href="remove_from_cart.php?index=<?= $i ?>" class="remove-link">Delete</a></td>
+                        </tr>
+                    <?php endforeach; 
+                else: ?>
                     <tr>
-                        <td><input type="checkbox" name="checkout_items[]" value="<?= $i ?>"></td>
-                        <td><?= $item['name'] ?></td>
-                        <td>₱<?= number_format($item['price'], 2) ?></td>
-                        <td><?= $item['qty'] ?></td>
-                        <td>₱<?= number_format($item['price'] * $item['qty'], 2) ?></td>
-                        <td><a href="remove_from_cart.php?index=<?= $i ?>" class="remove-link">Delete</a></td>
+                        <td colspan="6">Your cart is empty</td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </table>
             <div class="cart-actions">
-                <button type="submit" class="checkout-button">Checkout Selected</button>
+                <button type="button" id="checkout-button" class="checkout-button">Checkout Selected</button>
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('checkout-button').addEventListener('click', function(e) {
+            const checkboxes = document.querySelectorAll('input[name="checkout_items[]"]:checked');
+            const warningMessage = document.getElementById('warning-message');
+            
+            if (checkboxes.length === 0) {
+                // Show warning message
+                warningMessage.style.display = 'block';
+                
+                // Hide the message after 3 seconds
+                setTimeout(function() {
+                    warningMessage.style.display = 'none';
+                }, 3000);
+            } else {
+                // Proceed with form submission
+                document.getElementById('checkout-form').submit();
+            }
+        });
+    </script>
 </body>
 </html>

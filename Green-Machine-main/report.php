@@ -21,7 +21,7 @@
         }
         
         .report-container {
-            background-color: #fbeee0;
+            background-color: #024033;
             border-radius: 10px;
             padding: 30px;
             margin: 20px;
@@ -29,14 +29,14 @@
         }
         
         .report-title {
-            color: #024033;
+            color: white;
             font-size: 2.5em;
             margin-bottom: 10px;
             text-align: center;
         }
         
         .month-title {
-            color: #39241B;
+            color: white;
             font-size: 1.8em;
             text-align: center;
             margin-bottom: 30px;
@@ -75,9 +75,8 @@
             <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
         </div>
         <nav class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
-            <a href="inventory.html"><button class="button2">Inventory</button></a> 
-            <a href="Admin-dashboard.php"><button class="button2">dashboard</button></a>  
-            <a href="admin_orders.php"><button class="button2">Orders</button></a>     
+            <a href="inventory.html">Inventory</a> 
+            <a href="Admin-dashboard.php">Dashboard</a>       
         </nav>
     </header>
 
@@ -117,7 +116,7 @@
             if (count($orders) > 0) {
                 echo "<ul class='orders-list'>";
                 foreach ($orders as $order) {
-                    echo "<li>{$order['item_name']} - Quantity: {$order['quantity']} - Price: ₽{$order['price']}</li>";
+                    echo "<li>{$order['item_name']} - Quantity: {$order['quantity']} - Price: ₽{$order['total_price']}</li>";
                 }
                 echo "</ul>";
             } else {

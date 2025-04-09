@@ -43,13 +43,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
                             <span class="dashboard-label">Inventory</span>
                         </a>
                     </div>
-                    
-                    <div class="dashboard-card">
-                        <a href="admin_orders.php" class="dashboard-link">
-                            <img src="assets/images/orders.png" alt="Orders" class="dashboard-icon">
-                            <span class="dashboard-label">Orders</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

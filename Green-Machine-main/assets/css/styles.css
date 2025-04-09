@@ -16,7 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 200px; /* Space between logo and login */
+    gap: 25px; /* Space between logo and login */
     padding: 20px;
     flex-wrap: wrap; /* Allows stacking on small screens */
     margin-bottom: 50px;
@@ -323,10 +323,9 @@ body {
     }
 
     .inventory-container {
-            background-color: #fbeee0; /* Background color */
+            background-color: white;
             border: 1px solid #ccc; /* Border */
             border-radius: 10px; /* Border radius */
-            padding: 20px; /* Padding */
             max-width: 800px; /* Max width */
             margin: 0 auto; /* Center horizontally */
         }
@@ -354,7 +353,7 @@ body {
         /*NEW code for inventory.html */
         
         .inventory-container {
-            background-color: #fbeee0; /* Background color */
+            background-color: white;
             border: 1px solid #ccc; /* Border */
             border-radius: 10px; /* Border radius */
             padding: 20px; /* Padding */
@@ -439,8 +438,7 @@ body {
     min-height: 20px;
     margin-top: 10px;
 }
-
-.items-container { display: flex; flex-wrap: wrap; gap: 1em; }
+.items-container { display: flex; flex-wrap: wrap; gap: 1em; margin-top: 120px; margin-left: 100px; margin-right:100px; margin-bottom: 100px;}
         .item { padding: 10px; border: 1px solid #ccc; cursor: pointer; width: 150px; text-align: center; }
         #popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 10; background: white; padding: 20px; border-radius: 10px; width: 500px; box-shadow: 0 0 10px #000; }
         #popup-bg { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); z-index: 5; }
@@ -461,3 +459,34 @@ body {
             margin-top: 50px;
             text-align: center;
         }
+
+        /* Back Button Styling */
+.back-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Similar to the 'Sign up' button */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #45a049; /* Slightly darker shade when hovered */
+}
+
+/* Styling for the Sign Up button (assuming it's similar to others) */
+a {
+    font-size: 16px;
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
