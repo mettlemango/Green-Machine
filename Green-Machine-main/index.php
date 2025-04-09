@@ -47,8 +47,8 @@ session_start();
 
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
-            <div class="item" data-name="<?= $row['item_name'] ?>" data-price="<?= $row['price'] ?>">
-                <strong><?= $row['item_name'] ?></strong><br>
+            <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
+                <strong><?= $row['item'] ?></strong><br>
                 ₱<?= number_format($row['price'], 2) ?>
             </div>
         <?php endwhile; ?>

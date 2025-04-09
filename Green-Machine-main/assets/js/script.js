@@ -146,17 +146,34 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedItem.name = this.dataset.name;
             selectedItem.price = parseFloat(this.dataset.price);
             selectedItem.qty = 1;
-
+    
+            // Try to get the image from the clicked element first
+            const clickedImg = this.querySelector('img');
+            if (clickedImg && clickedImg.src) {
+                // If the item has an image, use it
+                document.getElementById('popup-img').src = clickedImg.src;
+            } else {
+                // Otherwise construct the path from the product name
+                const imagePath = `assets/images/products/${encodeURIComponent(selectedItem.name)}.png`;
+                document.getElementById('popup-img').src = imagePath;
+            }
+    
+            // Set up error handling
+            document.getElementById('popup-img').onerror = () => {
+                this.src = 'assets/images/default-product.png';
+                this.onerror = null; // Prevent infinite loop if default image fails
+            };
+    
+            // Update popup content
             document.getElementById('popup-name').textContent = selectedItem.name;
             document.getElementById('popup-price').textContent = selectedItem.price.toFixed(2);
-            document.getElementById('popup-img').src = `assets/images/${selectedItem.name.replace(/ /g, '_')}.jpg`;
             document.getElementById('popup-qty').textContent = selectedItem.qty;
-
+            
+            // Show popup
             document.getElementById('popup-bg').style.display = 'block';
             document.getElementById('popup').style.display = 'block';
         });
     });
-
     // Quantity controls
     const qtyIncrease = document.getElementById('qty-increase');
     const qtyDecrease = document.getElementById('qty-decrease');
