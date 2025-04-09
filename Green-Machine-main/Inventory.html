@@ -71,13 +71,12 @@
         <div class="headerContainer">
             <img src="assets/images/logo.png" class="headerPic" alt="GREEN Logo">
         </div>
+        <nav class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
+            <a href="admin_orders.php"><button class="button2">Orders</button></a>
+            <a href="Admin-dashboard.php"><button class="button2">dashboard</button></a>
+            <a href="report.php"><button class="button2">Report</button></a>        
+        </nav>
     </header>
-
-    <div class="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
-        <a href="admin_orders.php"><button class="button2">Orders</button></a>
-        <a href="inventory.html"><button class="button2">Inventory</button></a>
-        <a href="report.php"><button class="button2">Report</button></a>        
-    </div>
 
     <div class="main-content">
         <h2 class="header-title">Inventory Management</h2>
@@ -88,38 +87,51 @@
                         <h2>Update Inventory</h2>
                         <label for="itemSelect">Select Item:</label>
                         <select id="itemSelect" name="item">
-                            <option value="Pork Belly">Pork Belly</option>
-                            <option value="Spicy Pork Belly">Spicy Pork Belly</option>
-                            <option value="Beef Belly">Beef Belly</option>
-                            <option value="Galbi Sauce">Galbi Sauce</option>
-                            <option value="L.A. Galbi">L.A. Galbi</option>
-                            <option value="Coke">Coke</option>
-                            <option value="Sprite">Sprite</option>
-                            <option value="Royal">Royal</option>
-                            <option value="Pineapple Juice">Pineapple Juice</option>
-                            <option value="SMB">SMB</option>
-                            <option value="SML">SML</option>
-                            <option value="Soju Green Grape">Soju Green Grape</option>
-                            <option value="Soju Peach">Soju Peach</option>
-                            <option value="Soju Strawberry">Soju Strawberry</option>
-                            <option value="Water">Water</option>
-                            <option value="Kimchi">Kimchi</option>
-                            <option value="Salad">Salad</option>
-                            <option value="Odeng">Odeng</option>
-                            <option value="Japchae">Japchae</option>
-                            <option value="Sweet Potatoes">Sweet Potatoes</option>
-                            <option value="Cheese">Cheese</option>
-                            <option value="Ssamjang">Ssamjang</option>
-                            <option value="Sesame Oil / Salt">Sesame Oil / Salt</option>
-                            <option value="Lettuce">Lettuce</option>
+                            <option value="Mini Breadboard White">Mini Breadboard White</option>
+                            <option value="Basic Electronics Discovery Kit">Basic Electronics Discovery Kit</option>
+                            <option value="Arduino Trainer Mastery Kit">Arduino Trainer Mastery Kit</option>
+                            <option value="Breadboard Wires 65">Breadboard Wires 65</option>
+                            <option value="5pcs 1N4148 5 pcs per pack">5pcs 1N4148 5 pcs per pack</option>
+                            <option value="PBL304 600V 4A Bridge Rectifiers bp7">PBL304 600V 4A Bridge Rectifiers bp7</option>
+                            <option value="STPS30S45CT 5V 2x15A Dual Schottky CK TO220">STPS30S45CT 5V 2x15A Dual Schottky CK TO220</option>
+                            <option value="1N5399 1.5A 1000V Rectifier Diode">1N5399 1.5A 1000V Rectifier Diode</option>
+                            <option value="1N4007G Rectifier Taiwan Semiconductor Corp">1N4007G Rectifier Taiwan Semiconductor Corp</option>
+                            <option value="Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier">Vishay P600M 6A 1000V Plastic Case General Purpose Rectifier</option>
+                            <option value="S1G 400V 1A Rectifier Diode SMA">S1G 400V 1A Rectifier Diode SMA</option>
+                            <option value="W10M 1.5A 1000V Bridgle Rectifier UL Certified">W10M 1.5A 1000V Bridgle Rectifier UL Certified</option>
+                            <option value="LiteON GBU808 8A 800V Bridge Rectifier">LiteON GBU808 8A 800V Bridge Rectifier</option>
+                            <option value="MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified">MCC RS806 8A 800V Bridge Rectifier RS-806 UL Certified</option>
+                            <option value="S9018">S9018</option>
+                            <option value="RLZTE-11 5.1B 5.1V 500mW Zener SOD80C">RLZTE-11 5.1B 5.1V 500mW Zener SOD80C</option>
+                            <option value="Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)">Vishay, 30V Zener Diode ± 5% 1.3 W Through Hole 2-Pin DO-41 (DO-204AL)</option>
+                            <option value="DS1820 1-wire Digital Thermometer TO-92">DS1820 1-wire Digital Thermometer TO-92</option>
+                            <option value="Z84C0006PEC">Z84C0006PEC</option>
+                            <option value="SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting">SK-12D04 1P2T Miniature Slide Switch SPST Non Shorting</option>
+                            <option value="4P3T ROT">4P3T ROT</option>
+                            <option value="Transformer 0V-5V-7V 750mAh 220VAC">Transformer 0V-5V-7V 750mAh 220VAC</option>
+                            <option value="Transformer 12V">Transformer 12V</option>
+                            <option value="220V 9V-0V-9V 750mAh Transformer">220V 9V-0V-9V 750mAh Transformer</option>
+                            <option value="3.3mH Radial Inductor 3300uH">3.3mH Radial Inductor 3300uH</option>
+                            <option value="Inductor TH 1uH">Inductor TH 1uH</option>
                         </select>
-                        
-                        <label for="stockInput">Enter Quantity:</label>
-                        <input type="number" id="stockInput" placeholder="Enter quantity" name="stock">
-                        
-                        <button type="submit">Add Stock</button>
-                    </div>
-                    
+
+                        <button type="button" id="toggleNewProduct" style="margin: 10px 0;">+ Add New Product</button>
+    
+                <!-- New product fields (hidden initially) -->
+                <div id="newProductSection" style="display: none; margin-top: 15px;">
+                    <label for="newProductName">New Product Name:</label>
+                    <input type="text" id="newProductName" name="new_product_name" placeholder="New Product Name">
+    
+                    <label for="newProductCategory">Description (optional):</label>
+                    <input type="text" id="newProductCategory" name="new_product_category" placeholder="Category / Description">
+                </div>
+    
+                <!-- Common quantity input -->
+                <label for="stockInput">Enter Quantity:</label>
+                <input type="number" id="stockInput" name="stock" placeholder="Enter quantity" required>
+    
+                <button type="submit">Submit</button>
+            </div>  
                     <div class="column">
                         <h2>Current Stocks</h2>
                         <div id="stock-display"></div>
@@ -148,6 +160,19 @@
                     stockDisplay.innerHTML = "<p>Error loading stock data. Please try again.</p>";
                 });
         });
+        document.getElementById("toggleNewProduct").addEventListener("click", function () {
+    const section = document.getElementById("newProductSection");
+    const select = document.getElementById("itemSelect");
+
+    if (section.style.display === "none") {
+        section.style.display = "block";
+        select.disabled = true;
+    } else {
+        section.style.display = "none";
+        select.disabled = false;
+    }
+});
+
     </script>
 </body>
 </html>
