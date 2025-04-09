@@ -65,6 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .success-message { text-align: center; color: green; font-size: 1.2em; margin-top: 20px; }
             .back-button { display: block; margin: 20px auto; padding: 10px 20px; background-color: #006937; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-size: 1em; }
             .back-button:hover { background-color: #00512a; }
+            .payment-options { text-align: center; margin: 20px 0; }
+            .payment-buttons { display: flex; justify-content: center; gap: 20px; }
+            .payment-button img { width: 80px; height: auto; cursor: pointer; transition: transform 0.2s; }
+            .payment-button img:hover { transform: scale(1.1); }
         </style>
     </head>
     <body>
@@ -94,6 +98,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </table>
 
             <p class="success-message">Thank you for your purchase!</p>
+
+            <div class="payment-options">
+                <h2>Select Payment Option</h2>
+                <div class="payment-buttons">
+                    <a href="index.php" class="payment-button">
+                        <img src="assets/images/gcash.png" alt="GCash" class="payment-icon">
+                    </a>
+                    <a href="index.php" class="payment-button">
+                        <img src="assets/images/mastercard.png" alt="Mastercard" class="payment-icon">
+                    </a>
+                    <a href="index.php" class="payment-button">
+                        <img src="assets/images/visa.png" alt="Visa" class="payment-icon">
+                    </a>
+                </div>
+            </div>
+
             <a href="index.php" class="back-button">Return to Home</a>
         </div>
     </body>
