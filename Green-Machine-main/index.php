@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +12,19 @@ session_start();
 </head>
 <body>
     <header class="fixed-header">
-        <div class ="headerContainer">
+        <div class="headerContainer">
             <img src="assets/images/logo.png" class="headerPic">
         </div>
-        <form action="search.php" method="get" class="search-form">
-            <input type="text" name="query" placeholder="Search items..." required>
+        <form action="index.php" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search items..." value="<?php echo isset($_GET['query']) ? htmlspecialchars($_GET['query']) : ''; ?>" required>
             <button type="submit"><img src="assets/images/search.png" class="searchPic"></button>
         </form>
+
+        <!-- Back Button (appears if a search query is active) -->
+        <?php if (isset($_GET['query']) && !empty($_GET['query'])): ?>
+            <a href="index.php" class="back-button">Back to All Items</a>
+        <?php endif; ?>
+
         <a href="cart.php"><img src="assets/images/cart.png" class="cartPic"></a>
         <nav>
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
@@ -31,25 +38,39 @@ session_start();
     </header>
 
     <?php
+    // Create a connection to the database
     $conn = new mysqli("localhost", "root", "", "greenmachine");
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DISTINCT item, price, image_path FROM stock_test WHERE price > 0 ORDER BY item";    $items = $conn->query($sql);
+    // Set up the query based on whether a search query is provided
+    $sql = "SELECT DISTINCT item, price, image_path FROM stock_test WHERE price > 0";
+
+    // If a search query is provided, append a condition to filter by the query
+    if (isset($_GET['query']) && !empty($_GET['query'])) {
+        $search_query = $_GET['query'];
+        $sql .= " AND item LIKE '%$search_query%'";
+    }
+
+    // Order the items by name
+    $sql .= " ORDER BY item";
+
+    // Execute the query
+    $items = $conn->query($sql);
 
     if (!$items) {
         die("Query error: " . $conn->error);
     }
     ?>
 
-
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
             <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
                 <img src="<?= !empty($row['image_path']) ? htmlspecialchars($row['image_path']) : 'assets/images/default-product.png' ?>" 
-                alt="<?= htmlspecialchars($row['item']) ?>"
-                onerror="this.onerror=null;this.src='assets/images/default-product.png'">
+                     alt="<?= htmlspecialchars($row['item']) ?>"
+                     onerror="this.onerror=null;this.src='assets/images/default-product.png'">
                 <strong><?= $row['item'] ?></strong><br>
                 ₱<?= number_format($row['price'], 2) ?>
             </div>
@@ -73,6 +94,7 @@ session_start();
             </div>
         </div>
     </div>
+
     <script src="assets/js/script.js"></script>
     <div class="container">
     </div>
