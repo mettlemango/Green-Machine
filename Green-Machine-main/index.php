@@ -36,7 +36,7 @@ session_start();
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DISTINCT item_name, price FROM orders WHERE price > 0 ORDER BY item_name";
+    $sql = "SELECT DISTINCT item, price FROM stock_test WHERE price > 0 ORDER BY item";
     $items = $conn->query($sql);
 
     if (!$items) {
@@ -45,15 +45,17 @@ session_start();
     ?>
 
 
-    <div class="items-container">
-        <?php while ($row = $items->fetch_assoc()): ?>
-            <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
-                <strong><?= $row['item'] ?></strong><br>
-                ₱<?= number_format($row['price'], 2) ?>
-            </div>
-        <?php endwhile; ?>
-    </div>
-
+<div class="items-container">
+    <?php while ($row = $items->fetch_assoc()): ?>
+        <div class="item" data-name="<?= htmlspecialchars($row['item']) ?>" data-price="<?= $row['price'] ?>">
+            <img src="<?= !empty($row['image_path']) ? htmlspecialchars($row['image_path']) : 'assets/images/default-product.png' ?>" 
+                 alt="<?= htmlspecialchars($row['item']) ?>"
+                 onerror="this.onerror=null;this.src='assets/images/default-product.png'">
+            <strong><?= htmlspecialchars($row['item']) ?></strong><br>
+            ₱<?= number_format($row['price'], 2) ?>
+        </div>
+    <?php endwhile; ?>
+</div>
     <div id="popup-bg"></div>
     <div id="popup">
         <div style="display: flex;">
