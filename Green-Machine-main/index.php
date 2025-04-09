@@ -36,7 +36,7 @@ session_start();
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DISTINCT item, price FROM stock_test WHERE price > 0 ORDER BY item";
+    $sql = "SELECT DISTINCT item_name, price FROM orders WHERE price > 0 ORDER BY item_name";
     $items = $conn->query($sql);
 
     if (!$items) {
@@ -47,8 +47,8 @@ session_start();
 
     <div class="items-container">
         <?php while ($row = $items->fetch_assoc()): ?>
-            <div class="item" data-name="<?= $row['item'] ?>" data-price="<?= $row['price'] ?>">
-                <strong><?= $row['item'] ?></strong><br>
+            <div class="item" data-name="<?= $row['item_name'] ?>" data-price="<?= $row['price'] ?>">
+                <strong><?= $row['item_name'] ?></strong><br>
                 ₱<?= number_format($row['price'], 2) ?>
             </div>
         <?php endwhile; ?>

@@ -18,12 +18,13 @@ if ($conn->connect_error) {
         $description = isset($_POST['new_product_category']) ? $_POST['new_product_category'] : '';
         $price = isset($_POST['product_price']) ? $_POST['product_price'] : 0.00;
         
-        $imagePath = ''; 
-        if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = 'uploads/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0777, true); // Create folder if not exists
-                }
+        $imagePath = '';
+
+if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
+    $uploadDir = 'uploads/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
 
     $filename = basename($_FILES['product_image']['name']);
     $targetFile = $uploadDir . time() . "_" . $filename;
