@@ -59,6 +59,9 @@
         .remove-link {
             color: #e74c3c;
             text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
         .remove-link:hover {
@@ -72,6 +75,24 @@
             display: none;
         }
     </style>
+    <script>
+        async function removeFromCart(index) {
+            try {
+                const response = await fetch('remove_from_cart.php?index=' + index, { method: 'GET' });
+                if (response.ok) {
+                    document.getElementById('cart-item-' + index).remove();
+                    if (document.querySelectorAll('.cart-table tbody tr').length === 0) {
+                        document.querySelector('.cart-table tbody').innerHTML = '<tr><td colspan="6">Your cart is empty</td></tr>';
+                    }
+                } else {
+                    alert('Failed to remove item from cart.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while removing the item.');
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="fixed-header">
@@ -93,13 +114,13 @@
                 <?php 
                 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): 
                     foreach ($_SESSION['cart'] as $i => $item): ?>
-                        <tr>
+                        <tr id="cart-item-<?= $i ?>">
                             <td><input type="checkbox" name="checkout_items[]" value="<?= $i ?>"></td>
                             <td><?= htmlspecialchars($item['name']) ?></td>
                             <td>₱<?= number_format($item['price'], 2) ?></td>
                             <td><?= $item['qty'] ?></td>
                             <td>₱<?= number_format($item['price'] * $item['qty'], 2) ?></td>
-                            <td><a href="remove_from_cart.php?index=<?= $i ?>" class="remove-link">Delete</a></td>
+                            <td><button type="button" class="remove-link" onclick="removeFromCart(<?= $i ?>)">Delete</button></td>
                         </tr>
                     <?php endforeach; 
                 else: ?>
